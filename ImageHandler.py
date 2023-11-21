@@ -4,6 +4,7 @@ from scipy import fftpack
 from Filter import *
 import pylab as py
 from math import pi
+
 import scipy as sp
 from scipy import signal
 
@@ -30,16 +31,17 @@ class ImageHandler:
         (height,width) = psd2D.shape
         py.figure(figsize=(10,10*height/width),facecolor='white')
         py.clf()
-        py.rc('text',usetex=True)
-        py.xlabel(r'$\omega_1$',fontsize=24)
-        py.ylabel(r'$\omega_2$',fontsize=24)
+        py.xlabel('omega_1')
+        py.ylabel('omega_2')
         py.xticks(fontsize=16)
         py.yticks(fontsize=16)
         py.imshow( psd2D, cmap='Greys_r',extent=[-pi,pi,-pi,pi],aspect='auto')
         py.show()
 
     def showImage(self):
-        self.image.show()
+        py.imshow(self.image, cmap='Greys')
+        py.imshow(self.orig)
+        py.show()
 
     def inverseFourier(self):
         self.image = Image.fromarray(np.round(np.real(fftpack.ifft2(fftpack.ifftshift(self.four)))))

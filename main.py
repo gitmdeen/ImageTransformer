@@ -18,7 +18,7 @@ def padKernal(width,length,kernel):
 
 if __name__ == '__main__':
 
-    runCode = 14
+    runCode = 101
 
 
     if(runCode==0):
@@ -70,19 +70,31 @@ if __name__ == '__main__':
     elif(runCode==10):
         im = ImageHandler("pics/flowersHD.jpg")
         #im.image.show()
-        #im.showFourier()
+        im.showFourier()
         cf = CircleFilter(30,200,outside=False)
         im.applyFilter(cf)
         im.showFourier()
-        im.image.show()
+        im.showImage()
+
+    elif(runCode==101):
+        im = ImageHandler("pics/patch.png")
+        #im.image.show()
+        im.showFourier()
+        cf = CircleFilter(30,outside=True)
+        im.applyFilter(cf)
+        im.showFourier()
+        im.showImage()
+
     elif(runCode==11):
         im = ImageHandler("pics/flowersHD.jpg")
         im.image.show()
         im.showFourier()
-        cf = CircleFilter(30,80,outside=True)
+        cf = CircleFilter(30,200,outside=False)
         im.applyFilter(cf)
         im.showFourier()
         im.image.show()
+        # im.inverseFourier()
+        im.showImage()
     elif(runCode==12):
         im = ImageHandler("pics/flowersgray.jpg")
         im.image.show()
@@ -103,10 +115,10 @@ if __name__ == '__main__':
         cf = CircleFilter(80,outside=False)
         bigH = cf.showMultImage(im.four)
         im2 = ImageHandler("pics/flowersHD.jpg")
-        im2.image = Image.fromarray(np.multiply(bigH,255))
+        im2.image = Image.fromarray(np.multiply(bigH,255).astype(np.uint8))
         im2.four = im2.fourier()
-        im2.image.show()
-        im2.showFourier()
+        im2.orig.show()
+        # im2.showFourier()
         #im2.showFourier()
         #im2.inverseFourier()
         #im2.image.show()
@@ -137,6 +149,4 @@ if __name__ == '__main__':
         final.inverseFourier()
         final.showFourier()
         final.showImage()
-
-
 
