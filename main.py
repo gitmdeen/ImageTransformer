@@ -77,13 +77,18 @@ if __name__ == '__main__':
         im.showImage()
 
     elif(runCode==101):
-        im = ImageHandler("pics/patch.png")
-        #im.image.show()
+        im = ImageHandler("pics/domein.png")
+        im.imshow(im.image)
+
+        cf = CircleFilter(0,10, outside=False)
         im.showFourier()
-        cf = CircleFilter(30,outside=True)
         im.applyFilter(cf)
         im.showFourier()
-        im.showImage()
+        #im.showImage()
+        py.imshow(im.image)
+        py.show()
+        # im.inverseFourier()
+        # im.showImage()
 
     elif(runCode==11):
         im = ImageHandler("pics/flowersHD.jpg")
